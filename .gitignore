@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+data/*
+!data/README.md
+models/
+results/*
+!results/.gitkeep
