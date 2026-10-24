@@ -1,0 +1,7 @@
+# Python 3.10
+numpy==1.24.4
+scipy==1.13.0
+scikit-learn==1.4.2
+pandas==2.2.1
+torch>=2.0          # model training and the recall experiments
+tenseal>=0.3.14     # only the Microsoft SEAL runs (Table 7 and the top-20 agreement in §5.6)
