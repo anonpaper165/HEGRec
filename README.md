@@ -61,31 +61,31 @@ only the data; scripts marked † need trained models, and ‡ need TenSEAL. Sam
 | Table 1 (AR2023-HK row), §5.2 chunks per history | `dataset_amazon2023_hk.py` | `dataset_amazon2023_hk.json` |
 | Table 2 top | `hk_chunkonly_stale.py` | `hk_chunkonly_stale.json` |
 | Table 2 bottom | `hk_overlap_curve.py` | `hk_overlap_curve.json` |
-| Table 3 per-item, chunked, dense | `chunked_dense_endpoint.py` | `chunked_dense_endpoint.json` |
-| Table 3 degree- and chunk-keyed padding | `chunked_bucketed.py` | `chunked_bucketed.json` |
-| Table 3 redrawn decoys | `decoy_map_bound.py` | `decoy_map_bound.json` |
-| Table 3 item layout | `layout_table.py` | `layout_table.json` |
+| Table 8 per-item, chunked, dense | `chunked_dense_endpoint.py` | `chunked_dense_endpoint.json` |
+| Table 8 degree- and chunk-keyed padding | `chunked_bucketed.py` | `chunked_bucketed.json` |
+| Table 8 redrawn decoys | `decoy_map_bound.py` | `decoy_map_bound.json` |
+| Table 8 item layout | `layout_table.py` | `layout_table.json` |
 | §5.3 padding rules | `target_input_sweep.py` | `target_input_sweep.json` |
-| Table 4 and Fig. 3a, current profiles | `unified_comparison_hk_v2.py` | `unified_comparison_hk_v2.json` |
-| Table 4, year-old profiles | `unified_comparison_stale_hk.py` | `unified_comparison_stale_hk.json` |
-| Table 4, Table 5 and Fig. 3a traffic ‡ | `traffic_measured.py` (after `e2e_seal_request.py`, `cover_epochs_hk.py`) | `traffic_measured.json` |
+| Table 3 and Fig. 3a, current profiles | `unified_comparison_hk_v2.py` | `unified_comparison_hk_v2.json` |
+| Table 3, year-old profiles | `unified_comparison_stale_hk.py` | `unified_comparison_stale_hk.json` |
+| Table 3, Table 4 and Fig. 3a traffic ‡ | `traffic_measured.py` (after `e2e_seal_request.py`, `cover_epochs_hk.py`) | `traffic_measured.json` |
 | §5.4 and Fig. 3a bundles | `hk_bundle_linked.py` | `hk_bundle_linked.json` |
 | §5.3-5.4 partial histories; Fig. 3b | `removal_fixed_linked_ab.py` | `removal_fixed_linked_ab.json`, `removal_fixed_linked_sparse_ab.json` |
 | §5.4 partial-history recall; Fig. 3b † | `removal_recall_ab.py`, `ngcf_defence_recall.py` | `removal_recall_ab.json`, `ngcf_defence_recall.json` |
-| Table 5; §5.5 | `cover_epochs_hk.py` | `cover_epochs_hk.json` |
+| Table 4; §5.5 | `cover_epochs_hk.py` | `cover_epochs_hk.json` |
 | §5.5 deferral within a period | `cover_epochs_within_hk.py` | `cover_epochs_within_hk.json` |
 | §5.5 unrecorded interactions | `cover_epochs_deviceonly_hk.py` | `cover_epochs_deviceonly_hk.json` |
 | §5.5 unequal request rates | `dormant_prior_robust.py`, `rate_cut_epochs_hk.py` | `dormant_prior_robust.json`, `rate_cut_epochs_hk.json` |
 | §5.5 sorted vs random grouping | `codebook_order_ablation.py` | `codebook_order_ablation.json` |
-| Table 6 † | `accuracy_table_eval.py`, `accuracy_ml.py`, `hk_ngcf_final_run.sh` | `accuracy_table_eval.json`, `accuracy_ml.json`, `hk_ngcf_r_final.json` |
+| Table 5 † | `accuracy_table_eval.py`, `accuracy_ml.py`, `hk_ngcf_final_run.sh` | `accuracy_table_eval.json`, `accuracy_ml.json`, `hk_ngcf_r_final.json` |
 | §5.6, Fig. 3b (Amazon-Book, Gowalla) † | `cover_recall_seeds_ab.py`, `ngcf_defence_recall.py` | `cover_recall_seeds_ab.json`, `ngcf_defence_recall.json` |
 | §5.6 (AR2023-HK) † | `hk_cover_recall.py` (`HK_SPLIT=temporal`) | `hk_cover_recall*.json` |
 | Fig. 3b cover linkage † | `cover_substitution_recall_ab.py` | `cover_substitution_recall_ab.json` |
 | §5.2 open world | `HEGREC_NQ=10000 SKIP_PARTIAL=1 python experiments/hk_openworld_partial.py` | `hk_openworld_partial.json` |
-| Table 7, §5.7 †‡ | SEAL runs below, `derived_paired_timing.py`, `location_padding2.py`, `cover_population_cost.py`, `ngcf_cost.py` | `paired_timing_seq.json`, `cover_population_cost.json`, `ngcf_cost.json` |
+| Table 6, §5.7 †‡ | SEAL runs below, `derived_paired_timing.py`, `location_padding2.py`, `cover_population_cost.py`, `ngcf_cost.py` | `paired_timing_seq.json`, `cover_population_cost.json`, `ngcf_cost.json` |
 | Algorithm 1 | `location_padding2.py` (`Codebook`) | `location_padding2.json` |
 
-SEAL runs for Table 7, §5.7 and App. F (each writes per-shard files to `results/<E2E_OUTDIR>/`;
+SEAL runs for Table 6, §5.7 and App. G (each writes per-shard files to `results/<E2E_OUTDIR>/`;
 `DATASET` is `Gowalla`, `Amazon-Book` or `AR2023-HK`; the timing and size runs on AR2023-HK use random item vectors of the same shape):
 
 ```
@@ -98,7 +98,7 @@ E2E_N=200 python experiments/e2e_seal_ngcf.py DATASET sparse 0 1  # Gowalla, Ama
 E2E_N=50 E2E_OUTDIR=e2e_seal_paired_s50_seq      python experiments/e2e_seal_request.py DATASET interleaved 0 1
 E2E_N=50 E2E_OUTDIR=e2e_seal_ngcf_paired_s50_seq python experiments/e2e_seal_ngcf.py    DATASET interleaved 0 1
 PAIRED_SUFFIX=_seq python experiments/derived_paired_timing.py
-# traffic: Table 7 MiB
+# traffic: Table 6 MiB
 python experiments/traffic_measured.py && python experiments/location_padding2.py && \
   python experiments/cover_population_cost.py && python experiments/ngcf_cost.py
 # score error and top-20 agreement on AR2023-HK with the trained models
